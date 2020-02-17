@@ -1,6 +1,10 @@
 version: 2
 jobs:
   build:
+    branches:
+      only:
+        - ver/1.12.2
+        - /rc-.*/
     working_directory: ~/Akarin-project/Akarin
     parallelism: 1
     shell: /bin/bash --login
