@@ -34,7 +34,8 @@ jobs:
         - v1-dep-
     - run: git config --global user.email "circle@circleci.com"
     - run: git config --global user.name "CircleCI"
-    - run: chmod +x scripts/inst.sh
+    - run: chmod -Rv +x scripts/
+    - run: ./scripts/upstream.sh
     - run: ./scripts/inst.sh --setup --remote
     # Save dependency cache
     - save_cache:
