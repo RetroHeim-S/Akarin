@@ -5,7 +5,7 @@ set -e
 basedir="$(cd "$1" && pwd -P)"
 workdir="$basedir/work"
 paperbasedir="$basedir/work/Paper"
-paperworkdir="$paperbasedir/work"
+paperworkdir="$basedir/work/Paper/work"
 
 if [ "$2" == "--setup" ] || [ "$3" == "--setup" ] || [ "$4" == "--setup" ]; then
 	echo "[Akarin] Setup Paper.."
@@ -18,8 +18,8 @@ if [ "$2" == "--setup" ] || [ "$3" == "--setup" ] || [ "$4" == "--setup" ]; then
 			git clone https://github.com/retroheim/Minecraft.git
 		fi
 		
-		cd "$paperbasedir"
-		./paper jar
+		#cd "$paperbasedir"
+		#./paper jar
 	)
 fi
 
@@ -30,11 +30,13 @@ echo "[Akarin] Ready to build"
 	
 	cd "$paperbasedir"
 	if [ "$2" == "--fast" ] || [ "$3" == "--fast" ] || [ "$4" == "--fast" ]; then
-		echo "[Akarin] Test has been skipped"
+		echo "[Akarin] Test and repatch has been skipped"
+		echo "#paperbasedir/if"
 		\cp -rf "$basedir/sources/src" "$paperbasedir/Paper-Server/"
 		\cp -rf "$basedir/sources/pom.xml" "$paperbasedir/Paper-Server/"
 		mvn clean install -Dmaven.test.skip=true
 	else
+		echo "$paperbasedir/else"
 		rm -rf Paper-API/src
 		rm -rf Paper-Server/src
 		./paper patch
