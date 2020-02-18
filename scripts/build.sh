@@ -5,7 +5,7 @@ set -e
 basedir="$(cd "$1" && pwd -P)"
 workdir="$basedir/work"
 paperbasedir="$basedir/work/Paper"
-paperworkdir="$basedir/work/Paper/work"
+paperworkdir="$paperbasedir/work"
 
 if [ "$2" == "--setup" ] || [ "$3" == "--setup" ] || [ "$4" == "--setup" ]; then
 	echo "[Akarin] Setup Paper.."
