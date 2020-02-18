@@ -20,9 +20,6 @@ jobs:
     - checkout
     # Prepare for artifact
     - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
-    - run:
-        working_directory: ~/Akarin-project/Akarin
-        command: sudo update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java; sudo update-alternatives --set javac /usr/lib/jvm/java-8-openjdk-amd64/bin/javac; echo -e "export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64" >> $BASH_ENV
     # Dependencies
     # Restore the dependency cache
     - restore_cache:
@@ -39,6 +36,7 @@ jobs:
     - run: sudo apt update
     - run: sudo apt upgrade
     - run: sudo apt-get install maven
+    - run: sudo apt-get install openjdk-8-jdk
     - run: ./scripts/inst.sh --setup --remote
     # Save dependency cache
     - save_cache:
