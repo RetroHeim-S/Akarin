@@ -15,7 +15,7 @@ if [ "$2" == "--setup" ] || [ "$3" == "--setup" ] || [ "$4" == "--setup" ]; then
 			if [ -d "Minecraft" ]; then
 				rm Minecraft/ -r
 			fi
-			git clone https://github.com/Akarin-project/Minecraft.git
+			git clone https://github.com/retroheim/Minecraft.git
 		fi
 		
 		cd "$paperbasedir"
@@ -25,21 +25,24 @@ fi
 
 echo "[Akarin] Ready to build"
 (
+	cd "$paperbasedir"
 	echo "[Akarin] Touch sources.."
 	
 	cd "$paperbasedir"
 	if [ "$2" == "--fast" ] || [ "$3" == "--fast" ] || [ "$4" == "--fast" ]; then
-		echo "[Akarin] Test has been skipped"
+		echo "[Akarin] Test and repatch has been skipped"
+		echo "#paperbasedir/if"
 		\cp -rf "$basedir/sources/src" "$paperbasedir/Paper-Server/"
 		\cp -rf "$basedir/sources/pom.xml" "$paperbasedir/Paper-Server/"
-		mvn clean install -DskipTests
+		mvn clean install -Dmaven.test.skip=true
 	else
+		echo "$paperbasedir/else"
 		rm -rf Paper-API/src
 		rm -rf Paper-Server/src
 		./paper patch
 		\cp -rf "$basedir/sources/src" "$paperbasedir/Paper-Server/"
 		\cp -rf "$basedir/sources/pom.xml" "$paperbasedir/Paper-Server/"
-		mvn clean install
+		mvn clean install -Dmaven.test.skip=true
 	fi
 	
 	minecraftversion=$(cat "$paperworkdir/BuildData/info.json"  | grep minecraftVersion | cut -d '"' -f 4)
