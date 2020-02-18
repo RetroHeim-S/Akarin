@@ -25,6 +25,7 @@ fi
 
 echo "[Akarin] Ready to build"
 (
+	cd "$paperbasedir"
 	echo "[Akarin] Touch sources.."
 	
 	cd "$paperbasedir"
@@ -32,14 +33,14 @@ echo "[Akarin] Ready to build"
 		echo "[Akarin] Test has been skipped"
 		\cp -rf "$basedir/sources/src" "$paperbasedir/Paper-Server/"
 		\cp -rf "$basedir/sources/pom.xml" "$paperbasedir/Paper-Server/"
-		mvn clean install -DskipTests
+		mvn clean install -Dmaven.test.skip=true
 	else
 		rm -rf Paper-API/src
 		rm -rf Paper-Server/src
 		./paper patch
 		\cp -rf "$basedir/sources/src" "$paperbasedir/Paper-Server/"
 		\cp -rf "$basedir/sources/pom.xml" "$paperbasedir/Paper-Server/"
-		mvn clean install
+		mvn clean install -Dmaven.test.skip=true
 	fi
 	
 	minecraftversion=$(cat "$paperworkdir/BuildData/info.json"  | grep minecraftVersion | cut -d '"' -f 4)
