@@ -38,9 +38,8 @@ jobs:
     - run: sudo apt update
     - run: sudo apt upgrade
     - run: sudo apt-get install maven
-    - run: ./scripts/upstream.sh
-    - run: ./scripts/build.sh
-    - run: ./scripts/inst.sh --setup --remote --fast
+    - run: ./scripts/build.sh 
+    - run: ./scripts/inst.sh --setup --remote
     # Save dependency cache
     - save_cache:
         key: v1-dep-{{ .Branch }}-{{ epoch }}
