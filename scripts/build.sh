@@ -18,8 +18,8 @@ if [ "$2" == "--setup" ] || [ "$3" == "--setup" ] || [ "$4" == "--setup" ]; then
 			git clone https://github.com/retroheim/Minecraft.git
 		fi
 		
-		#cd "$paperbasedir"
-		#./paper jar
+		cd "$paperbasedir"
+		./paper jar
 	)
 fi
 
