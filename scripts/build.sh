@@ -11,7 +11,7 @@ if [ "$2" == "--setup" ] || [ "$3" == "--setup" ] || [ "$4" == "--setup" ]; then
 	echo "[Akarin] Setup Paper.."
 	(
 		if [ "$2" == "--remote" ] || [ "$3" == "--remote" ] || [ "$4" == "--remote" ]; then
-			cd "$paperworkdir"
+			cd "$paperworkdir/Paper-Server/src/main/java"
 			if [ -d "Minecraft" ]; then
 				rm Minecraft/ -r
 			fi
@@ -42,7 +42,7 @@ echo "[Akarin] Ready to build"
 		./paper patch
 		\cp -rf "$basedir/sources/src" "$paperbasedir/Paper-Server/"
 		\cp -rf "$basedir/sources/pom.xml" "$paperbasedir/Paper-Server/"
-		mvn clean install -Dmaven.test.skip=true
+		mvn clean install
 	fi
 	
 	minecraftversion=$(cat "$paperworkdir/BuildData/info.json"  | grep minecraftVersion | cut -d '"' -f 4)
