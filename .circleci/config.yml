@@ -38,7 +38,7 @@ jobs:
     - run: sudo apt-get install maven
     - run: sudo apt-get install openjdk-8-jdk
     #- run: ./scripts/upstream.sh
-    - run: ./scripts/inst.sh --setup --fast #--remote
+    - run: ./scripts/inst.sh --setup --remote
     # Save dependency cache
     - save_cache:
         key: v1-dep-{{ .Branch }}-{{ epoch }}

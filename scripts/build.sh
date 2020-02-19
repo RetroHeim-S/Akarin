@@ -25,18 +25,15 @@ fi
 
 echo "[Akarin] Ready to build"
 (
-	cd "$paperbasedir"
 	echo "[Akarin] Touch sources.."
 	
 	cd "$paperbasedir"
 	if [ "$2" == "--fast" ] || [ "$3" == "--fast" ] || [ "$4" == "--fast" ]; then
-		echo "[Akarin] Test and repatch has been skipped"
-		echo "#paperbasedir/if"
+		echo "[Akarin] Test has been skipped"
 		\cp -rf "$basedir/sources/src" "$paperbasedir/Paper-Server/"
 		\cp -rf "$basedir/sources/pom.xml" "$paperbasedir/Paper-Server/"
-		mvn clean install -Dmaven.test.skip=true
+		mvn clean install -DskipTests
 	else
-		echo "$paperbasedir/else"
 		rm -rf Paper-API/src
 		rm -rf Paper-Server/src
 		./paper patch
