@@ -8,7 +8,7 @@ paperbasedir="$basedir/work/Paper"
 paperworkdir="$basedir/work/Paper/work"
 
 if [ "$2" == "--setup" ] || [ "$3" == "--setup" ] || [ "$4" == "--setup" ]; then
-	echo "[Akarin] Setup Paper.."
+	echo "[Akarin] Setup Paper..."
 	(
 		if [ "$2" == "--remote" ] || [ "$3" == "--remote" ] || [ "$4" == "--remote" ]; then
 			cd "$paperworkdir"
