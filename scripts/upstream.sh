@@ -4,7 +4,7 @@
 set -e
 basedir="$(cd "$1" && pwd -P)"
 
-(git submodule update --init --recursive && git add . && git commit -m 'Upstream Paper') || (
+(git submodule update --init --remote --recursive && git add . && git commit -m 'Upstream Paper') || (
 	echo "Failed to upstream"
 	exit 1
 ) || exit 1
